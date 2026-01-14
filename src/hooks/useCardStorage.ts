@@ -38,11 +38,17 @@ export const useCardStorage = () => {
     return cardStorage.getCardById(id);
   }, []);
 
+  const saveAllCards = useCallback((newCards: Card[]) => {
+    cardStorage.saveCards(newCards);
+    setCards(newCards);
+  }, []);
+
   return {
     cards,
     addCard,
     updateCard,
     deleteCard,
     getCardById,
+    saveAllCards,
   };
 };

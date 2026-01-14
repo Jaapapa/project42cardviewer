@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Card } from '../types/Card';
 import '../styles/CardList.css';
 
@@ -5,13 +6,17 @@ interface CardListProps {
   cards: Card[];
   onSelectCard: (card: Card) => void;
   onPrintView: () => void;
+  onImport?: (cards: Card[]) => void;
 }
 
 export const CardList: React.FC<CardListProps> = ({
   cards,
   onSelectCard,
   onPrintView,
+  onImport,
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const statLabels = [
     'Analyseren',
     'Ontwerpen',
@@ -34,13 +39,72 @@ export const CardList: React.FC<CardListProps> = ({
     'zelfontwikkeling',
   ];
 
+  const handleExport = () => {
+    const dataStr = JSON.stringify(cards, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `project42-cards-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const importedCards = JSON.parse(e.target?.result as string);
+        if (Array.isArray(importedCards) && importedCards.length > 0) {
+          onImport?.(importedCards);
+          alert(`Successfully imported ${importedCards.length} cards!`);
+        } else {
+          alert('Invalid file format. Please ensure it contains an array of cards.');
+        }
+      } catch (error) {
+        alert('Error reading file. Please ensure it is valid JSON.');
+        console.error('Import error:', error);
+      }
+    };
+    reader.readAsText(file);
+    
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className="card-list-container">
       <div className="card-list-header">
         <h1>Project 42 Card Viewer</h1>
-        <button className="print-btn" onClick={onPrintView}>
-          Print View (9 per A4)
-        </button>
+        <div className="card-list-buttons">
+          <button className="action-btn" onClick={handleExport}>
+            Export JSON
+          </button>
+          <button className="action-btn" onClick={handleImportClick}>
+            Import JSON
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".json"
+            onChange={handleImport}
+            style={{ display: 'none' }}
+          />
+          <button className="print-btn" onClick={onPrintView}>
+            Print View (9 per A4)
+          </button>
+        </div>
       </div>
 
       {cards.length === 0 && (
