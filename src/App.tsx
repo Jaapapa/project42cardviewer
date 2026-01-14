@@ -13,7 +13,6 @@ function App() {
 
   const handleSelectCard = (card: Card) => {
     setSelectedCard(card);
-    setCurrentView('detail');
   };
 
   const handleBackToList = () => {
@@ -28,14 +27,23 @@ function App() {
   return (
     <div className="app">
       {currentView === 'list' && (
-        <CardList
-          cards={cards}
-          onSelectCard={handleSelectCard}
-          onPrintView={handlePrintView}
-        />
-      )}
-      {currentView === 'detail' && selectedCard && (
-        <CardDetail card={selectedCard} onBack={handleBackToList} />
+        <div className="list-detail-layout">
+          <div className="list-panel">
+            <CardList
+              cards={cards}
+              onSelectCard={handleSelectCard}
+              onPrintView={handlePrintView}
+            />
+          </div>
+          {selectedCard && (
+            <div className="detail-panel">
+              <CardDetail
+                card={selectedCard}
+                onBack={() => setSelectedCard(null)}
+              />
+            </div>
+          )}
+        </div>
       )}
       {currentView === 'print' && (
         <PrintView cards={cards} onBack={handleBackToList} />

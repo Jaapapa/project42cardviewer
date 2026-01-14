@@ -1,32 +1,32 @@
 .card-detail-container {
   width: 100%;
-  min-height: 100vh;
-  padding: var(--spacing-lg);
-  background-color: var(--bg-dark);
+  height: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--card-bg);
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: hidden;
 }
 
 .back-btn {
-  align-self: flex-start;
-  margin-bottom: var(--spacing-lg);
-  font-size: var(--font-size-base);
+  align-self: flex-end;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-small);
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .card-display {
   font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 10px;
+  line-height: 1.3;
   color: var(--text-primary);
   background-color: var(--card-bg);
-  padding: var(--spacing-md);
-  border: 2px solid var(--fg-light);
+  padding: var(--spacing-sm);
   white-space: pre;
   overflow-x: auto;
-  max-width: 450px;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  overflow-y: auto;
+  flex: 1;
   text-shadow: 0 0 5px var(--fg-light);
 }
 
@@ -47,7 +47,7 @@
 
 .card-image-space {
   color: var(--text-secondary);
-  min-height: 2em;
+  min-height: 1.2em;
 }
 
 .stat-row {
@@ -76,11 +76,7 @@
   .card-display {
     background-color: white;
     color: black;
-    border: none;
-    box-shadow: none;
     text-shadow: none;
-    max-width: 100%;
-    padding: 0;
   }
 
   .card-border-top,
@@ -95,9 +91,12 @@
 }
 
 @media (max-width: 768px) {
+  .card-detail-container {
+    padding: var(--spacing-sm);
+  }
+
   .card-display {
-    font-size: 11px;
-    max-width: 90vw;
+    font-size: 9px;
   }
 }
 

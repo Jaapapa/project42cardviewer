@@ -32,53 +32,47 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
   return (
     <div className="card-detail-container">
       <button className="back-btn" onClick={onBack}>
-        ← Back to List
+        ✕ Close
       </button>
       <pre className="card-display">
         <div className="card-border">
           <div className="card-border-top">
-            ┌─────────────────────────────────────┐
+            ┌─────────────────────────────────┐
           </div>
           <div className="card-header">
-            │ {card.name.padEnd(18)} | {card.group.padEnd(14)} │
+            │ {card.name.padEnd(14)} │ {card.group.padEnd(8)} │
           </div>
           <div className="card-border-mid">
-            ├─────────────────────────────────────┤
+            ├─────────────────────────────────┤
           </div>
 
           <div className="card-image-space">
-            │                                     │
-          </div>
-          <div className="card-image-space">
-            │     [Space for Graphic/Image]       │
-          </div>
-          <div className="card-image-space">
-            │                                     │
+            │     [Graphic]                   │
           </div>
 
           <div className="card-border-mid">
-            ├─────────────────────────────────────┤
+            ├─────────────────────────────────┤
           </div>
 
           {statsList.map(({ label, key }) => {
             const value = card.stats[key];
             return (
               <div key={key} className="stat-row">
-                │ {label.padEnd(15)} <StatBar value={value} /> {value}/10       │
+                │ {label.substring(0, 11).padEnd(11)} <StatBar value={value} /> {value}/10 │
               </div>
             );
           })}
 
           <div className="card-border-mid">
-            ├─────────────────────────────────────┤
+            ├─────────────────────────────────┤
           </div>
 
           <div className="flavor-text">
-            │ "{card.flavorText}"                 │
+            │ "{card.flavorText.substring(0, 28)}"│
           </div>
 
           <div className="card-border-bottom">
-            └─────────────────────────────────────┘
+            └─────────────────────────────────┘
           </div>
         </div>
       </pre>
