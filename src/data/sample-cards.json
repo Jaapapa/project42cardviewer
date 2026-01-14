@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "name": "Fire Mage",
-    "group": "Mage",
+    "name": "Arthur Dent",
+    "group": "A",
     "stats": {
       "analyseren": 8,
       "ontwerpen": 9,
@@ -13,12 +13,12 @@
       "verantwoording": 4,
       "zelfontwikkeling": 8
     },
-    "flavorText": "Master of flames and ancient fire magic, wielding power beyond mortal comprehension."
+    "flavorText": "An ordinary human thrust into extraordinary circumstances with tea."
   },
   {
     "id": "2",
-    "name": "Frost Knight",
-    "group": "Knight",
+    "name": "Ford Prefect",
+    "group": "B",
     "stats": {
       "analyseren": 7,
       "ontwerpen": 6,
@@ -29,12 +29,12 @@
       "verantwoording": 8,
       "zelfontwikkeling": 6
     },
-    "flavorText": "A valiant warrior who commands the frozen wastelands and protects the realm."
+    "flavorText": "A resourceful hitchhiker with deep knowledge and collaborative spirit."
   },
   {
     "id": "3",
-    "name": "Shadow Rogue",
-    "group": "Rogue",
+    "name": "Zaphod Beeblebrox",
+    "group": "A",
     "stats": {
       "analyseren": 9,
       "ontwerpen": 7,
@@ -45,12 +45,12 @@
       "verantwoording": 3,
       "zelfontwikkeling": 7
     },
-    "flavorText": "Swift as night wind, deadly as poison, unseen by all."
+    "flavorText": "Charismatic and confident, though sometimes reckless in testing."
   },
   {
     "id": "4",
-    "name": "Forest Druid",
-    "group": "Druid",
+    "name": "Trillian",
+    "group": "B",
     "stats": {
       "analyseren": 8,
       "ontwerpen": 8,
@@ -61,12 +61,12 @@
       "verantwoording": 9,
       "zelfontwikkeling": 8
     },
-    "flavorText": "Connected to nature itself, balancing all forces in harmonious equilibrium."
+    "flavorText": "Intelligent and adaptable, with excellent documentation skills."
   },
   {
     "id": "5",
-    "name": "Stone Paladin",
-    "group": "Paladin",
+    "name": "Marvin",
+    "group": "A",
     "stats": {
       "analyseren": 6,
       "ontwerpen": 7,
@@ -77,12 +77,12 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
-    "flavorText": "Unyielding defender of the light, steadfast in purpose and unbreakable in spirit."
+    "flavorText": "A paranoid android delivering reliable integration with responsibility."
   },
   {
     "id": "6",
-    "name": "Storm Archer",
-    "group": "Archer",
+    "name": "Slartibartfast",
+    "group": "B",
     "stats": {
       "analyseren": 8,
       "ontwerpen": 7,
@@ -93,12 +93,12 @@
       "verantwoording": 5,
       "zelfontwikkeling": 8
     },
-    "flavorText": "Strikes with precision like lightning, never missing their mark."
+    "flavorText": "A master designer passionate about fjords and detailed craftsmanship."
   },
   {
     "id": "7",
-    "name": "Void Sorcerer",
-    "group": "Sorcerer",
+    "name": "Deep Thought",
+    "group": "A",
     "stats": {
       "analyseren": 10,
       "ontwerpen": 9,
@@ -109,12 +109,12 @@
       "verantwoording": 2,
       "zelfontwikkeling": 9
     },
-    "flavorText": "Taps into forbidden void magic, understanding secrets reality dares not reveal."
+    "flavorText": "The ultimate supercomputer analyzing the universe's greatest questions."
   },
   {
     "id": "8",
-    "name": "Holy Priest",
-    "group": "Priest",
+    "name": "Vogon Guard",
+    "group": "B",
     "stats": {
       "analyseren": 7,
       "ontwerpen": 8,
@@ -125,12 +125,12 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
-    "flavorText": "Channeling divine light, healing wounds and banishing darkness from the world."
+    "flavorText": "Bureaucratic efficiency and collaboration with solid communication."
   },
   {
     "id": "9",
-    "name": "Beast Master",
-    "group": "Ranger",
+    "name": "Babel Fish",
+    "group": "A",
     "stats": {
       "analyseren": 7,
       "ontwerpen": 6,
@@ -141,6 +141,6 @@
       "verantwoording": 6,
       "zelfontwikkeling": 8
     },
-    "flavorText": "One with the beasts, commanding loyalty and ferocity from wild creatures."
+    "flavorText": "Bridging communication gaps across all systems and interfaces."
   }
 ]
