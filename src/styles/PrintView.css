@@ -1,0 +1,122 @@
+.print-view-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
+
+.back-btn {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  page-break-inside: avoid;
+  width: 100%;
+  background-color: var(--bg-dark);
+}
+
+.print-card {
+  aspect-ratio: 63 / 89;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  page-break-inside: avoid;
+}
+
+.print-card-content {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.2;
+  color: black;
+  background-color: white;
+  padding: 4px;
+  white-space: pre;
+  word-wrap: break-word;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.print-hint {
+  margin-top: var(--spacing-lg);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* A4 Print Stylesheet */
+@media print {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-view-container {
+    padding: 0;
+    background: white;
+    width: 100%;
+    height: 100%;
+  }
+
+  .back-btn,
+  .print-hint {
+    display: none;
+  }
+
+  .print-grid {
+    width: 210mm;
+    height: 297mm;
+    gap: 0;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    page-break-inside: avoid;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-card {
+    border: none;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    page-break-inside: avoid;
+  }
+
+  .print-card-content {
+    font-size: 7px;
+    line-height: 1.1;
+    padding: 2px;
+    color: black;
+    background: white;
+  }
+}
+
+@media (max-width: 1024px) {
+  .print-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .print-grid {
+    grid-template-columns: 1fr;
+  }
+}

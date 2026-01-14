@@ -2,6 +2,7 @@
   "name": "project42cardviewer",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "homepage": "https://Jaapapa.github.io/project42cardviewer",
   "scripts": {
     "dev": "vite",

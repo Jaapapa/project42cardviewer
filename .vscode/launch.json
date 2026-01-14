@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Start Dev Server",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "npm: dev"
+    },
+    {
+      "name": "Chrome - Attach & Debug",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "urlFilter": "http://localhost:5173/*",
+      "pathMapping": {
+        "/": "${workspaceFolder}/",
+        "/src/": "${workspaceFolder}/src/"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Dev Server + Debug",
+      "configurations": ["Start Dev Server", "Chrome - Attach & Debug"],
+      "preLaunchTask": "npm: dev",
+      "stopAll": true
+    }
+  ]
+}

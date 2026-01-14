@@ -1,0 +1,146 @@
+[
+  {
+    "id": "1",
+    "name": "Fire Mage",
+    "group": "Mage",
+    "stats": {
+      "analyseren": 8,
+      "ontwerpen": 9,
+      "integratie": 6,
+      "samenwerken": 5,
+      "realiseren": 7,
+      "testen": 6,
+      "verantwoording": 4,
+      "zelfontwikkeling": 8
+    },
+    "flavorText": "Master of flames and ancient fire magic, wielding power beyond mortal comprehension."
+  },
+  {
+    "id": "2",
+    "name": "Frost Knight",
+    "group": "Knight",
+    "stats": {
+      "analyseren": 7,
+      "ontwerpen": 6,
+      "integratie": 8,
+      "samenwerken": 9,
+      "realiseren": 8,
+      "testen": 7,
+      "verantwoording": 8,
+      "zelfontwikkeling": 6
+    },
+    "flavorText": "A valiant warrior who commands the frozen wastelands and protects the realm."
+  },
+  {
+    "id": "3",
+    "name": "Shadow Rogue",
+    "group": "Rogue",
+    "stats": {
+      "analyseren": 9,
+      "ontwerpen": 7,
+      "integratie": 5,
+      "samenwerken": 4,
+      "realiseren": 8,
+      "testen": 9,
+      "verantwoording": 3,
+      "zelfontwikkeling": 7
+    },
+    "flavorText": "Swift as night wind, deadly as poison, unseen by all."
+  },
+  {
+    "id": "4",
+    "name": "Forest Druid",
+    "group": "Druid",
+    "stats": {
+      "analyseren": 8,
+      "ontwerpen": 8,
+      "integratie": 9,
+      "samenwerken": 8,
+      "realiseren": 7,
+      "testen": 7,
+      "verantwoording": 9,
+      "zelfontwikkeling": 8
+    },
+    "flavorText": "Connected to nature itself, balancing all forces in harmonious equilibrium."
+  },
+  {
+    "id": "5",
+    "name": "Stone Paladin",
+    "group": "Paladin",
+    "stats": {
+      "analyseren": 6,
+      "ontwerpen": 7,
+      "integratie": 9,
+      "samenwerken": 10,
+      "realiseren": 9,
+      "testen": 8,
+      "verantwoording": 10,
+      "zelfontwikkeling": 7
+    },
+    "flavorText": "Unyielding defender of the light, steadfast in purpose and unbreakable in spirit."
+  },
+  {
+    "id": "6",
+    "name": "Storm Archer",
+    "group": "Archer",
+    "stats": {
+      "analyseren": 8,
+      "ontwerpen": 7,
+      "integratie": 7,
+      "samenwerken": 6,
+      "realiseren": 8,
+      "testen": 8,
+      "verantwoording": 5,
+      "zelfontwikkeling": 8
+    },
+    "flavorText": "Strikes with precision like lightning, never missing their mark."
+  },
+  {
+    "id": "7",
+    "name": "Void Sorcerer",
+    "group": "Sorcerer",
+    "stats": {
+      "analyseren": 10,
+      "ontwerpen": 9,
+      "integratie": 5,
+      "samenwerken": 3,
+      "realiseren": 6,
+      "testen": 8,
+      "verantwoording": 2,
+      "zelfontwikkeling": 9
+    },
+    "flavorText": "Taps into forbidden void magic, understanding secrets reality dares not reveal."
+  },
+  {
+    "id": "8",
+    "name": "Holy Priest",
+    "group": "Priest",
+    "stats": {
+      "analyseren": 7,
+      "ontwerpen": 8,
+      "integratie": 9,
+      "samenwerken": 10,
+      "realiseren": 8,
+      "testen": 7,
+      "verantwoording": 10,
+      "zelfontwikkeling": 7
+    },
+    "flavorText": "Channeling divine light, healing wounds and banishing darkness from the world."
+  },
+  {
+    "id": "9",
+    "name": "Beast Master",
+    "group": "Ranger",
+    "stats": {
+      "analyseren": 7,
+      "ontwerpen": 6,
+      "integratie": 8,
+      "samenwerken": 7,
+      "realiseren": 8,
+      "testen": 7,
+      "verantwoording": 6,
+      "zelfontwikkeling": 8
+    },
+    "flavorText": "One with the beasts, commanding loyalty and ferocity from wild creatures."
+  }
+]

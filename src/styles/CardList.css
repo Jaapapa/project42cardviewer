@@ -1,0 +1,105 @@
+.card-list-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
+
+.card-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--fg-light);
+}
+
+.card-list-header h1 {
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--fg-light);
+}
+
+.print-btn {
+  font-size: var(--font-size-base);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.card-list-item {
+  background-color: var(--card-bg);
+  border: 2px solid var(--fg-light);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100px;
+}
+
+.card-list-item:hover {
+  background-color: var(--fg-light);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.card-name {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
+}
+
+.card-group {
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.card-list-item:hover .card-group {
+  color: var(--bg-dark);
+}
+
+.no-cards {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+  font-size: var(--font-size-large);
+  border: 2px dashed var(--fg-light);
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .card-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-list-container {
+    padding: var(--spacing-md);
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-list-header h1 {
+    font-size: 20px;
+  }
+}
