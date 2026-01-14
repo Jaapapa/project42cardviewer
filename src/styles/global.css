@@ -1,0 +1,138 @@
+:root {
+  /* Colors - Retro Terminal Style */
+  --bg-dark: #0a0e27;
+  --fg-light: #00ff00;
+  --fg-accent: #00ff80;
+  --border-color: #00ff00;
+  --card-bg: #1a1a2e;
+  --text-primary: #00ff00;
+  --text-secondary: #00cc00;
+
+  /* Typography */
+  --font-mono: 'Courier New', 'Courier', monospace;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Card Dimensions */
+  --card-width: 350px;
+  --card-height: 490px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-mono);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  font-family: var(--font-mono);
+  background-color: var(--bg-dark);
+  color: var(--fg-accent);
+  border: 2px solid var(--fg-accent);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--fg-accent);
+  color: var(--bg-dark);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+}
+
+/* Layout */
+.app {
+  width: 100%;
+  height: 100%;
+}
+
+.list-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-lg);
+  width: 100%;
+  height: 100vh;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-dark);
+}
+
+.list-panel {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-panel {
+  border: 2px solid var(--fg-light);
+  overflow-y: auto;
+  background-color: var(--card-bg);
+  border-radius: 2px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .list-detail-layout {
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 14px;
+    --card-width: 300px;
+    --card-height: 420px;
+  }
+
+  .list-detail-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    height: auto;
+  }
+
+  .detail-panel {
+    border-top: 2px solid var(--fg-light);
+    border-left: none;
+    border-radius: 0;
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-base: 12px;
+    --card-width: 280px;
+    --card-height: 390px;
+  }
+
+  .list-detail-layout {
+    padding: var(--spacing-sm);
+  }
+}

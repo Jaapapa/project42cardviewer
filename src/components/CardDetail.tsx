@@ -1,0 +1,103 @@
+import { Card } from '../types/Card';
+import '../styles/CardDetail.css';
+
+interface CardDetailProps {
+  card: Card;
+  onBack: () => void;
+}
+
+const StatBar: React.FC<{ value: number }> = ({ value }) => {
+  const filled = Math.min(value, 10);
+  const empty = 10 - filled;
+  return (
+    <>
+      {'█'.repeat(filled)}
+      {'░'.repeat(empty)}
+    </>
+  );
+};
+
+const wrapText = (text: string, width: number): string[] => {
+  const words = text.split(' ');
+  const lines: string[] = [];
+  let currentLine = '';
+
+  words.forEach((word) => {
+    if ((currentLine + word).length <= width) {
+      currentLine += (currentLine ? ' ' : '') + word;
+    } else {
+      if (currentLine) lines.push(currentLine.substring(0, width));
+      currentLine = word;
+    }
+  });
+  if (currentLine) lines.push(currentLine.substring(0, width));
+  return lines;
+};
+
+export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
+  const statsList = [
+    { label: 'Analyseren', key: 'analyseren' as const },
+    { label: 'Ontwerpen', key: 'ontwerpen' as const },
+    { label: 'Integratie', key: 'integratie' as const },
+    { label: 'Samenwerken', key: 'samenwerken' as const },
+    { label: 'Realiseren', key: 'realiseren' as const },
+    { label: 'Testen', key: 'testen' as const },
+    { label: 'Verantwoording', key: 'verantwoording' as const },
+    { label: 'Zelfontwikkeling', key: 'zelfontwikkeling' as const },
+  ];
+
+  const flavorLines = wrapText(card.flavorText, 28);
+  const paddedFlavorLines = flavorLines.slice(0, 3).map((line) => line.padEnd(28));
+
+  return (
+    <div className="card-detail-container">
+      <button className="back-btn" onClick={onBack}>
+        ✕ Close
+      </button>
+      <pre className="card-display">
+        <div className="card-border">
+          <div className="card-border-top">
+            ┌──────────────────────────────┐
+          </div>
+          <div className="card-header">
+            │ {card.name.substring(0, 20).padEnd(20)} │ {card.group.substring(0, 5).padEnd(5)} │
+          </div>
+          <div className="card-border-mid">
+            ├──────────────────────────────┤
+          </div>
+
+          <div className="card-image-space">
+            │     [Graphic]                │
+          </div>
+
+          <div className="card-border-mid">
+            ├──────────────────────────────┤
+          </div>
+
+          {statsList.map(({ label, key }) => {
+            const value = card.stats[key];
+            return (
+              <div key={key} className="stat-row">
+                │ {label.substring(0, 9).padEnd(9)}  <StatBar value={value} />  {String(value).padStart(2)}/10 │
+              </div>
+            );
+          })}
+
+          <div className="card-border-mid">
+            ├──────────────────────────────┤
+          </div>
+
+          {paddedFlavorLines.map((line, idx) => (
+            <div key={`flavor-${idx}`} className="flavor-text">
+              │ {line} │
+            </div>
+          ))}
+
+          <div className="card-border-bottom">
+            └──────────────────────────────┘
+          </div>
+        </div>
+      </pre>
+    </div>
+  );
+};
