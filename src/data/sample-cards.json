@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Arthur Dent",
+    "name": "John Dent",
     "group": "A",
     "stats": {
       "analyseren": 8,
@@ -13,11 +13,11 @@
       "verantwoording": 4,
       "zelfontwikkeling": 8
     },
-    "flavorText": "An ordinary human thrust into extraordinary circumstances with tea."
+    "flavorText": "An ordinary student thrust into extraordinary projects with tea."
   },
   {
     "id": "2",
-    "name": "Ford Prefect",
+    "name": "Mike Prefect",
     "group": "B",
     "stats": {
       "analyseren": 7,
@@ -29,11 +29,11 @@
       "verantwoording": 8,
       "zelfontwikkeling": 6
     },
-    "flavorText": "A resourceful hitchhiker with deep knowledge and collaborative spirit."
+    "flavorText": "A resourceful developer with deep knowledge and collaborative spirit."
   },
   {
     "id": "3",
-    "name": "Zaphod Beeblebrox",
+    "name": "James Beeblebrox",
     "group": "A",
     "stats": {
       "analyseren": 9,
@@ -49,7 +49,7 @@
   },
   {
     "id": "4",
-    "name": "Trillian",
+    "name": "Emma Trillian",
     "group": "B",
     "stats": {
       "analyseren": 8,
@@ -65,7 +65,7 @@
   },
   {
     "id": "5",
-    "name": "Marvin",
+    "name": "David Marvin",
     "group": "A",
     "stats": {
       "analyseren": 6,
@@ -77,11 +77,11 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
-    "flavorText": "A paranoid android delivering reliable integration with responsibility."
+    "flavorText": "A reliable developer delivering solid integration with responsibility."
   },
   {
     "id": "6",
-    "name": "Slartibartfast",
+    "name": "Robert Slartibartfast",
     "group": "B",
     "stats": {
       "analyseren": 8,
@@ -93,11 +93,11 @@
       "verantwoording": 5,
       "zelfontwikkeling": 8
     },
-    "flavorText": "A master designer passionate about fjords and detailed craftsmanship."
+    "flavorText": "A master designer passionate about details and craftsmanship."
   },
   {
     "id": "7",
-    "name": "Deep Thought",
+    "name": "Thomas Thought",
     "group": "A",
     "stats": {
       "analyseren": 10,
@@ -109,11 +109,11 @@
       "verantwoording": 2,
       "zelfontwikkeling": 9
     },
-    "flavorText": "The ultimate supercomputer analyzing the universe's greatest questions."
+    "flavorText": "A brilliant analyst exploring the universe's greatest questions."
   },
   {
     "id": "8",
-    "name": "Vogon Guard",
+    "name": "Christopher Vogon",
     "group": "B",
     "stats": {
       "analyseren": 7,
@@ -125,11 +125,11 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
-    "flavorText": "Bureaucratic efficiency and collaboration with solid communication."
+    "flavorText": "Efficient and collaborative with solid communication skills."
   },
   {
     "id": "9",
-    "name": "Babel Fish",
+    "name": "Andrew Fish",
     "group": "A",
     "stats": {
       "analyseren": 7,
