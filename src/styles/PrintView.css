@@ -31,8 +31,8 @@
 
 .print-card-content {
   font-family: var(--font-mono);
-  font-size: 8px;
-  line-height: 1.2;
+  font-size: 10px;
+  line-height: 1.15;
   color: black;
   background-color: white;
   padding: 4px;
@@ -60,18 +60,25 @@
     padding: 0;
   }
 
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     background: white;
     color: black;
-    margin: 0;
-    padding: 0;
   }
 
   .print-view-container {
     padding: 0;
     background: white;
-    width: 100%;
-    height: 100%;
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
   }
 
   .back-btn,
@@ -85,27 +92,40 @@
     gap: 0;
     background: white;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 70mm);
+    grid-template-rows: repeat(3, 99mm);
     page-break-inside: avoid;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .print-card {
+    border: 1px solid #000;
+    width: 70mm;
+    height: 99mm;
+    page-break-inside: avoid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 0;
   }
 
-  .print-card {
-    border: none;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    page-break-inside: avoid;
-  }
-
   .print-card-content {
-    font-size: 7px;
+    font-size: 9px;
     line-height: 1.1;
-    padding: 2px;
+    padding: 1mm;
     color: black;
     background: white;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    white-space: pre;
+    font-family: 'Courier New', monospace;
   }
 }
 

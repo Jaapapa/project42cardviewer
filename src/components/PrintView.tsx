@@ -10,6 +10,23 @@ interface PrintCardProps {
   card: Card;
 }
 
+const wrapText = (text: string, width: number): string[] => {
+  const words = text.split(' ');
+  const lines: string[] = [];
+  let currentLine = '';
+
+  words.forEach((word) => {
+    if ((currentLine + word).length <= width) {
+      currentLine += (currentLine ? ' ' : '') + word;
+    } else {
+      if (currentLine) lines.push(currentLine.substring(0, width));
+      currentLine = word;
+    }
+  });
+  if (currentLine) lines.push(currentLine.substring(0, width));
+  return lines;
+};
+
 const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
   const statsList = [
     { label: 'Analyseren', key: 'analyseren' as const },
@@ -28,21 +45,22 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
     return '█'.repeat(filled) + '░'.repeat(empty);
   };
 
+  const flavorLines = wrapText(card.flavorText, 28);
+  const paddedFlavorLines = flavorLines.slice(0, 3).map((line) => line.padEnd(28));
+
+  const cardContent = `┌──────────────────────────────┐
+│ ${card.name.substring(0, 20).padEnd(20)} │ ${card.group.substring(0, 5).padEnd(5)} │
+├──────────────────────────────┤
+│     [Graphic]                │
+├──────────────────────────────┤
+${statsList.map(({ label, key }) => `│ ${label.substring(0, 9).padEnd(9)}  ${StatBar(card.stats[key])}  ${String(card.stats[key]).padStart(2)}/10 │`).join('\n')}
+├──────────────────────────────┤
+${paddedFlavorLines.map((line) => `│ ${line} │`).join('\n')}
+└──────────────────────────────┘`;
+
   return (
     <div className="print-card">
-      <pre className="print-card-content">
-        {`┌─────────────────────────────────────┐
-│ ${card.name.substring(0, 18).padEnd(18)} │ ${card.group.substring(0, 14).padEnd(14)} │
-├─────────────────────────────────────┤
-│                                     │
-│     [Space for Graphic/Image]       │
-│                                     │
-├─────────────────────────────────────┤
-${statsList.map(({ label, key }) => `│ ${label.padEnd(15)} ${StatBar(card.stats[key])} ${card.stats[key]}/10       │`).join('\n')}
-├─────────────────────────────────────┤
-│ "${card.flavorText.substring(0, 33).padEnd(33)}" │
-└─────────────────────────────────────┘`}
-      </pre>
+      <pre className="print-card-content">{cardContent}</pre>
     </div>
   );
 };
