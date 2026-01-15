@@ -358,7 +358,11 @@ export const CardList: React.FC<CardListProps> = ({
                     className="card-final-grade-cell"
                     onMouseEnter={() => setHoveredStatCell(`finalGrade-${card.id}`)}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      if (hoveredStatCell === `finalGrade-${card.id}`) {
+                        e.stopPropagation();
+                      }
+                    }}
                   >
                     <div className="stat-value-container">
                       <span>{card.finalGrade}</span>
@@ -366,7 +370,8 @@ export const CardList: React.FC<CardListProps> = ({
                         <div className="stat-controls">
                           <button
                             className="stat-btn stat-decrement"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               onUpdateCard(card.id, {
                                 finalGrade: Math.max(1, card.finalGrade - 1),
                               });
@@ -377,7 +382,8 @@ export const CardList: React.FC<CardListProps> = ({
                           </button>
                           <button
                             className="stat-btn stat-increment"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               onUpdateCard(card.id, {
                                 finalGrade: Math.min(10, card.finalGrade + 1),
                               });

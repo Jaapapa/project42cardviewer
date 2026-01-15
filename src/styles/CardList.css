@@ -206,6 +206,10 @@
   color: var(--fg-light);
 }
 
+.card-table tbody tr:hover .card-final-grade-cell {
+  color: var(--bg-dark);
+}
+
 .card-final-grade-cell .stat-value-container {
   display: flex;
   align-items: center;
@@ -269,6 +273,11 @@
 }
 
 .card-stat-cell:hover .stat-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.card-final-grade-cell:hover .stat-controls {
   opacity: 1;
   pointer-events: auto;
 }
