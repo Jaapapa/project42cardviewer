@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card } from '../types/Card';
 import '../styles/CardList.css';
 
@@ -7,6 +7,7 @@ interface CardListProps {
   onSelectCard: (card: Card) => void;
   onPrintView: () => void;
   onImport?: (cards: Card[]) => void;
+  onUpdateCard?: (id: string, updatedCard: Partial<Card>) => void;
 }
 
 export const CardList: React.FC<CardListProps> = ({
@@ -14,8 +15,10 @@ export const CardList: React.FC<CardListProps> = ({
   onSelectCard,
   onPrintView,
   onImport,
+  onUpdateCard,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [hoveredStatCell, setHoveredStatCell] = useState<string | null>(null);
 
   const statLabels = [
     'Analyseren',
@@ -83,6 +86,23 @@ export const CardList: React.FC<CardListProps> = ({
     fileInputRef.current?.click();
   };
 
+  const handleStatChange = (cardId: string, statKey: keyof Card['stats'], delta: number) => {
+    const card = cards.find((c) => c.id === cardId);
+    if (!card || !onUpdateCard) return;
+
+    const currentValue = card.stats[statKey];
+    const newValue = Math.max(1, Math.min(10, currentValue + delta));
+
+    if (newValue !== currentValue) {
+      onUpdateCard(cardId, {
+        stats: {
+          ...card.stats,
+          [statKey]: newValue,
+        },
+      });
+    }
+  };
+
   return (
     <div className="card-list-container">
       <div className="card-list-header">
@@ -134,11 +154,41 @@ export const CardList: React.FC<CardListProps> = ({
                 >
                   <td className="card-name-cell">{card.name}</td>
                   <td className="card-group-cell">{card.group}</td>
-                  {statKeys.map((key) => (
-                    <td key={key} className="card-stat-cell">
-                      {card.stats[key]}
-                    </td>
-                  ))}
+                  {statKeys.map((key) => {
+                    const cellId = `${card.id}-${key}`;
+                    const isHovered = hoveredStatCell === cellId;
+                    return (
+                      <td
+                        key={key}
+                        className="card-stat-cell"
+                        onMouseEnter={() => setHoveredStatCell(cellId)}
+                        onMouseLeave={() => setHoveredStatCell(null)}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="stat-value-container">
+                          <span>{card.stats[key]}</span>
+                          {isHovered && onUpdateCard && (
+                            <div className="stat-controls">
+                              <button
+                                className="stat-btn stat-decrement"
+                                onClick={() => handleStatChange(card.id, key, -1)}
+                                title="Decrease"
+                              >
+                                −
+                              </button>
+                              <button
+                                className="stat-btn stat-increment"
+                                onClick={() => handleStatChange(card.id, key, 1)}
+                                title="Increase"
+                              >
+                                +
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    );
+                  })}
                 </tr>
               ))}
             </tbody>

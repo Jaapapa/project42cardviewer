@@ -7,7 +7,7 @@ import { PrintView } from './components/PrintView';
 import './styles/global.css';
 
 function App() {
-  const { cards, saveAllCards } = useCardStorage();
+  const { cards, saveAllCards, updateCard } = useCardStorage();
   const [currentView, setCurrentView] = useState<ViewMode>('list');
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
@@ -38,6 +38,7 @@ function App() {
               onSelectCard={handleSelectCard}
               onPrintView={handlePrintView}
               onImport={handleImport}
+              onUpdateCard={updateCard}
             />
           </div>
           {selectedCard && (

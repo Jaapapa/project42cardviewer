@@ -99,6 +99,61 @@
   text-align: center;
   min-width: 50px;
   font-weight: bold;
+  position: relative;
+  padding: var(--spacing-md);
+}
+
+.stat-value-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 20px;
+}
+
+.stat-value-container span {
+  display: block;
+}
+
+.stat-controls {
+  display: flex;
+  gap: 12px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.card-stat-cell:hover .stat-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.stat-btn {
+  background-color: var(--fg-light);
+  color: var(--bg-dark);
+  border: 1px solid var(--fg-light);
+  padding: 2px 6px;
+  min-width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}
+
+.stat-btn:hover {
+  background-color: var(--fg-accent);
+  box-shadow: 0 0 5px rgba(0, 255, 128, 0.5);
+  transform: scale(1.1);
+}
+
+.stat-btn:active {
+  transform: scale(0.95);
 }
 
 .no-cards {
