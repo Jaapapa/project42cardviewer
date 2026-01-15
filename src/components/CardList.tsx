@@ -221,11 +221,15 @@ export const CardList: React.FC<CardListProps> = ({
                     className="card-name-cell"
                     onMouseEnter={() => {
                       if (editingNameId !== card.id) {
-                        setHoveredStatCell(card.id);
+                        setHoveredStatCell(`name-${card.id}`);
                       }
                     }}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      if (editingNameId === card.id) {
+                        e.stopPropagation();
+                      }
+                    }}
                   >
                     {editingNameId === card.id ? (
                       <div className="name-edit-container">
@@ -248,7 +252,7 @@ export const CardList: React.FC<CardListProps> = ({
                     ) : (
                       <>
                         <span>{card.name}</span>
-                        {hoveredStatCell === card.id && onUpdateCard && (
+                        {hoveredStatCell === `name-${card.id}` && onUpdateCard && (
                           <button
                             className="name-edit-btn"
                             onClick={(e) => {
@@ -267,11 +271,15 @@ export const CardList: React.FC<CardListProps> = ({
                     className="card-group-cell"
                     onMouseEnter={() => {
                       if (editingGroupId !== card.id) {
-                        setHoveredStatCell(card.id);
+                        setHoveredStatCell(`group-${card.id}`);
                       }
                     }}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      if (editingGroupId === card.id) {
+                        e.stopPropagation();
+                      }
+                    }}
                   >
                     {editingGroupId === card.id ? (
                       <div className="group-edit-container">
@@ -294,7 +302,7 @@ export const CardList: React.FC<CardListProps> = ({
                     ) : (
                       <>
                         <span>{card.group}</span>
-                        {hoveredStatCell === card.id && onUpdateCard && (
+                        {hoveredStatCell === `group-${card.id}` && onUpdateCard && (
                           <button
                             className="group-edit-btn"
                             onClick={(e) => {
