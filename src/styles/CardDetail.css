@@ -106,9 +106,6 @@
 }
 
 .card-final-grade-display {
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 1px;
 }
 
 @media (max-width: 480px) {

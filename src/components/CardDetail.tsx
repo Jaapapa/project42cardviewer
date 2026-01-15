@@ -66,14 +66,6 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
             ├──────────────────────────────┤
           </div>
 
-          <div className="card-image-space">
-            │     [Graphic]                │
-          </div>
-
-          <div className="card-border-mid">
-            ├──────────────────────────────┤
-          </div>
-
           {statsList.map(({ label, key }) => {
             const value = card.stats[key];
             return (
@@ -98,7 +90,7 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
           </div>
 
           <div className="card-final-grade-display">
-            │ FINAL GRADE: {String(card.finalGrade)} │
+            │ FINAL GRADE: {String(card.finalGrade).padEnd(15)} │
           </div>
 
           <div className="card-border-bottom">
