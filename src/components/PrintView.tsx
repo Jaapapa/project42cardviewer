@@ -74,12 +74,23 @@ export const PrintView: React.FC<PrintViewProps> = ({ cards, onBack }) => {
       <button className="back-btn" onClick={onBack}>
         ← Back
       </button>
+      
+      <div className="print-instructions">
+        <h2>Print Instructions</h2>
+        <ol>
+          <li>Press <strong>Ctrl+P</strong> (or <strong>Cmd+P</strong> on Mac) to open the print dialog</li>
+          <li>In the print settings, set <strong>Scale</strong> to <strong>77%</strong> for optimal card sizing</li>
+          <li>Set margins to <strong>None</strong> or <strong>Minimal</strong></li>
+          <li>Select your paper size and printer, then print</li>
+        </ol>
+        <p className="note">Each card is sized for standard trading cards (63mm × 89mm). The page displays 9 cards (3×3 grid) on A4 size.</p>
+      </div>
+
       <div className="print-grid">
         {printCards.map((card) => (
           <PrintCard key={card.id} card={card} />
         ))}
       </div>
-      <p className="print-hint">Use Ctrl+P (Cmd+P on Mac) to print this page.</p>
     </div>
   );
 };
