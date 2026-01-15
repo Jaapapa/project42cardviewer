@@ -8,6 +8,7 @@ interface CardListProps {
   onPrintView: () => void;
   onImport?: (cards: Card[]) => void;
   onUpdateCard?: (id: string, updatedCard: Partial<Card>) => void;
+  onAddCard?: (card: Card) => void;
 }
 
 export const CardList: React.FC<CardListProps> = ({
@@ -16,6 +17,7 @@ export const CardList: React.FC<CardListProps> = ({
   onPrintView,
   onImport,
   onUpdateCard,
+  onAddCard,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [hoveredStatCell, setHoveredStatCell] = useState<string | null>(null);
@@ -101,6 +103,29 @@ export const CardList: React.FC<CardListProps> = ({
         },
       });
     }
+  };
+
+  const handleAddCard = () => {
+    if (!onAddCard) return;
+
+    const newCard: Card = {
+      id: `card-${Date.now()}`,
+      name: 'New Card',
+      group: 'A',
+      stats: {
+        analyseren: 7,
+        ontwerpen: 7,
+        integratie: 7,
+        samenwerken: 7,
+        realiseren: 7,
+        testen: 7,
+        verantwoording: 7,
+        zelfontwikkeling: 7,
+      },
+      flavorText: 'Add your card description here.',
+    };
+
+    onAddCard(newCard);
   };
 
   return (
@@ -193,6 +218,11 @@ export const CardList: React.FC<CardListProps> = ({
               ))}
             </tbody>
           </table>
+          {onAddCard && (
+            <button className="add-card-btn" onClick={handleAddCard}>
+              + Add New Card
+            </button>
+          )}
         </div>
       )}
     </div>
