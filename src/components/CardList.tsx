@@ -21,6 +21,10 @@ export const CardList: React.FC<CardListProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [hoveredStatCell, setHoveredStatCell] = useState<string | null>(null);
+  const [editingNameId, setEditingNameId] = useState<string | null>(null);
+  const [editingNameValue, setEditingNameValue] = useState<string>('');
+  const [editingGroupId, setEditingGroupId] = useState<string | null>(null);
+  const [editingGroupValue, setEditingGroupValue] = useState<string>('');
 
   const statLabels = [
     'Analyseren',
@@ -128,6 +132,42 @@ export const CardList: React.FC<CardListProps> = ({
     onAddCard(newCard);
   };
 
+  const handleNameEditStart = (cardId: string, currentName: string) => {
+    setEditingNameId(cardId);
+    setEditingNameValue(currentName);
+  };
+
+  const handleNameEditSave = (cardId: string) => {
+    if (editingNameValue.trim() && onUpdateCard) {
+      onUpdateCard(cardId, { name: editingNameValue });
+    }
+    setEditingNameId(null);
+    setEditingNameValue('');
+  };
+
+  const handleNameEditCancel = () => {
+    setEditingNameId(null);
+    setEditingNameValue('');
+  };
+
+  const handleGroupEditStart = (cardId: string, currentGroup: string) => {
+    setEditingGroupId(cardId);
+    setEditingGroupValue(currentGroup);
+  };
+
+  const handleGroupEditSave = (cardId: string) => {
+    if (editingGroupValue.trim() && onUpdateCard) {
+      onUpdateCard(cardId, { group: editingGroupValue });
+    }
+    setEditingGroupId(null);
+    setEditingGroupValue('');
+  };
+
+  const handleGroupEditCancel = () => {
+    setEditingGroupId(null);
+    setEditingGroupValue('');
+  };
+
   return (
     <div className="card-list-container">
       <div className="card-list-header">
@@ -177,8 +217,98 @@ export const CardList: React.FC<CardListProps> = ({
                   className="card-row"
                   onClick={() => onSelectCard(card)}
                 >
-                  <td className="card-name-cell">{card.name}</td>
-                  <td className="card-group-cell">{card.group}</td>
+                  <td
+                    className="card-name-cell"
+                    onMouseEnter={() => {
+                      if (editingNameId !== card.id) {
+                        setHoveredStatCell(card.id);
+                      }
+                    }}
+                    onMouseLeave={() => setHoveredStatCell(null)}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {editingNameId === card.id ? (
+                      <div className="name-edit-container">
+                        <input
+                          type="text"
+                          value={editingNameValue}
+                          onChange={(e) => setEditingNameValue(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleNameEditSave(card.id);
+                            } else if (e.key === 'Escape') {
+                              handleNameEditCancel();
+                            }
+                          }}
+                          onBlur={() => handleNameEditSave(card.id)}
+                          autoFocus
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <span>{card.name}</span>
+                        {hoveredStatCell === card.id && onUpdateCard && (
+                          <button
+                            className="name-edit-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleNameEditStart(card.id, card.name);
+                            }}
+                            title="Edit name"
+                          >
+                            ✏️
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </td>
+                  <td
+                    className="card-group-cell"
+                    onMouseEnter={() => {
+                      if (editingGroupId !== card.id) {
+                        setHoveredStatCell(card.id);
+                      }
+                    }}
+                    onMouseLeave={() => setHoveredStatCell(null)}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {editingGroupId === card.id ? (
+                      <div className="group-edit-container">
+                        <input
+                          type="text"
+                          value={editingGroupValue}
+                          onChange={(e) => setEditingGroupValue(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleGroupEditSave(card.id);
+                            } else if (e.key === 'Escape') {
+                              handleGroupEditCancel();
+                            }
+                          }}
+                          onBlur={() => handleGroupEditSave(card.id)}
+                          autoFocus
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <span>{card.group}</span>
+                        {hoveredStatCell === card.id && onUpdateCard && (
+                          <button
+                            className="group-edit-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleGroupEditStart(card.id, card.group);
+                            }}
+                            title="Edit group"
+                          >
+                            ✏️
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </td>
                   {statKeys.map((key) => {
                     const cellId = `${card.id}-${key}`;
                     const isHovered = hoveredStatCell === cellId;
