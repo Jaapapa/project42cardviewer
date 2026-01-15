@@ -33,6 +33,44 @@
   border: 2px solid var(--fg-light);
   background-color: var(--card-bg);
   border-radius: 2px;
+  scrollbar-width: auto;
+  scrollbar-color: var(--fg-light) var(--bg-dark);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Webkit scrollbar styling (Chrome, Edge, Safari) */
+.card-table-wrapper::-webkit-scrollbar {
+  width: 12px;
+}
+
+.card-table-wrapper::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+.card-table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--fg-light);
+  border-radius: 6px;
+}
+
+.card-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #00ff00;
+  box-shadow: 0 0 8px var(--fg-light);
+}
+
+/* Mobile scrollbar visibility */
+@media (max-width: 768px) {
+  .card-table-wrapper {
+    scrollbar-width: auto;
+  }
+
+  .card-table-wrapper::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  .card-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--fg-light);
+    min-height: 40px;
+  }
 }
 
 .card-table {
@@ -134,7 +172,7 @@
 }
 
 .card-group-cell {
-  min-width: 100px;
+  min-width: 60px;
   color: var(--text-secondary);
   position: relative;
   padding: var(--spacing-md);

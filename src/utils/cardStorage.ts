@@ -2,13 +2,26 @@ import { Card } from '../types/Card';
 
 const STORAGE_KEY = 'project42_cards';
 
+// Migrate card data to ensure all required fields exist
+const migrateCard = (card: any): Card => {
+  return {
+    id: card.id,
+    name: card.name,
+    group: card.group,
+    stats: card.stats,
+    finalGrade: card.finalGrade ?? 7, // Default to 7 if missing
+    flavorText: card.flavorText,
+  };
+};
+
 export const cardStorage = {
   getCards(): Card[] {
     try {
       const data = localStorage.getItem(STORAGE_KEY);
       if (!data) return [];
       const cards = JSON.parse(data);
-      return Array.isArray(cards) ? cards : [];
+      if (!Array.isArray(cards)) return [];
+      return cards.map(migrateCard);
     } catch (error) {
       console.error('Error reading cards from storage:', error);
       return [];
