@@ -56,6 +56,8 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
 ${statsList.map(({ label, key }) => `│ ${label.substring(0, 9).padEnd(9)}  ${StatBar(card.stats[key])}  ${String(card.stats[key]).padStart(2)}/10 │`).join('\n')}
 ├──────────────────────────────┤
 ${paddedFlavorLines.map((line) => `│ ${line} │`).join('\n')}
+├──────────────────────────────┤
+${`│ FINAL GRADE: ${String(card.finalGrade).padStart(2)} `.padEnd(31)}│
 └──────────────────────────────┘`;
 
   return (

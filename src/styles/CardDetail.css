@@ -46,7 +46,6 @@
 }
 
 .card-image-space {
-  color: var(--text-secondary);
   min-height: 1.2em;
 }
 
@@ -54,6 +53,11 @@
   color: var(--text-primary);
   display: flex;
   align-items: center;
+}
+
+.flavor-row {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
 }
 
 .flavor-text {
@@ -85,6 +89,7 @@
   .card-header,
   .card-image-space,
   .stat-row,
+  .flavor-row,
   .flavor-text {
     color: black;
   }
@@ -98,6 +103,12 @@
   .card-display {
     font-size: 9px;
   }
+}
+
+.card-final-grade-display {
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 480px) {

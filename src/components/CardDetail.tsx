@@ -88,10 +88,18 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
           </div>
 
           {paddedFlavorLines.map((line, idx) => (
-            <div key={`flavor-${idx}`} className="flavor-text">
-              │ {line} │
+            <div key={`flavor-${idx}`} className="flavor-row">
+              │ <span className="flavor-text">{line}</span> │
             </div>
           ))}
+
+          <div className="card-border-mid">
+            ├──────────────────────────────┤
+          </div>
+
+          <div className="card-final-grade-display">
+            │ FINAL GRADE: {String(card.finalGrade)} │
+          </div>
 
           <div className="card-border-bottom">
             └──────────────────────────────┘

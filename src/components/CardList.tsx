@@ -35,6 +35,7 @@ export const CardList: React.FC<CardListProps> = ({
     'Testen',
     'Verantwoording',
     'Zelfontwikkeling',
+    'Final grade',
   ];
 
   const statKeys: (keyof Card['stats'])[] = [
@@ -126,6 +127,7 @@ export const CardList: React.FC<CardListProps> = ({
         verantwoording: 7,
         zelfontwikkeling: 7,
       },
+      finalGrade: 7,
       flavorText: 'Add your card description here.',
     };
 
@@ -352,6 +354,42 @@ export const CardList: React.FC<CardListProps> = ({
                       </td>
                     );
                   })}
+                  <td
+                    className="card-final-grade-cell"
+                    onMouseEnter={() => setHoveredStatCell(`finalGrade-${card.id}`)}
+                    onMouseLeave={() => setHoveredStatCell(null)}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="stat-value-container">
+                      <span>{card.finalGrade}</span>
+                      {hoveredStatCell === `finalGrade-${card.id}` && onUpdateCard && (
+                        <div className="stat-controls">
+                          <button
+                            className="stat-btn stat-decrement"
+                            onClick={() => {
+                              onUpdateCard(card.id, {
+                                finalGrade: Math.max(1, card.finalGrade - 1),
+                              });
+                            }}
+                            title="Decrease"
+                          >
+                            −
+                          </button>
+                          <button
+                            className="stat-btn stat-increment"
+                            onClick={() => {
+                              onUpdateCard(card.id, {
+                                finalGrade: Math.min(10, card.finalGrade + 1),
+                              });
+                            }}
+                            title="Increase"
+                          >
+                            +
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

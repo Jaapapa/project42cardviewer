@@ -13,6 +13,7 @@
       "verantwoording": 4,
       "zelfontwikkeling": 8
     },
+    "finalGrade": 7,
     "flavorText": "An ordinary student thrust into extraordinary projects with tea."
   },
   {
@@ -29,6 +30,7 @@
       "verantwoording": 8,
       "zelfontwikkeling": 6
     },
+    "finalGrade": 8,
     "flavorText": "A resourceful developer with deep knowledge and collaborative spirit."
   },
   {
@@ -45,6 +47,7 @@
       "verantwoording": 3,
       "zelfontwikkeling": 7
     },
+    "finalGrade": 7,
     "flavorText": "Charismatic and confident, though sometimes reckless in testing."
   },
   {
@@ -61,6 +64,7 @@
       "verantwoording": 9,
       "zelfontwikkeling": 8
     },
+    "finalGrade": 8,
     "flavorText": "Intelligent and adaptable, with excellent documentation skills."
   },
   {
@@ -77,6 +81,7 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
+    "finalGrade": 9,
     "flavorText": "A reliable developer delivering solid integration with responsibility."
   },
   {
@@ -93,6 +98,7 @@
       "verantwoording": 5,
       "zelfontwikkeling": 8
     },
+    "finalGrade": 7,
     "flavorText": "A master designer passionate about details and craftsmanship."
   },
   {
@@ -109,6 +115,7 @@
       "verantwoording": 2,
       "zelfontwikkeling": 9
     },
+    "finalGrade": 7,
     "flavorText": "A brilliant analyst exploring the universe's greatest questions."
   },
   {
@@ -125,6 +132,7 @@
       "verantwoording": 10,
       "zelfontwikkeling": 7
     },
+    "finalGrade": 8,
     "flavorText": "Efficient and collaborative with solid communication skills."
   },
   {
@@ -141,6 +149,7 @@
       "verantwoording": 6,
       "zelfontwikkeling": 8
     },
+    "finalGrade": 7,
     "flavorText": "Bridging communication gaps across all systems and interfaces."
   }
 ]

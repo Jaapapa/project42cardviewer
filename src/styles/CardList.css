@@ -158,6 +158,23 @@
   transform: translateY(-50%) scale(1.2);
 }
 
+.card-final-grade-cell {
+  text-align: center;
+  min-width: 50px;
+  font-weight: bold;
+  position: relative;
+  padding: var(--spacing-md);
+  font-size: 16px;
+  color: var(--fg-light);
+}
+
+.card-final-grade-cell .stat-value-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 .group-edit-container {
   display: flex;
   align-items: center;

@@ -12,6 +12,7 @@ export interface Card {
     verantwoording: number;
     zelfontwikkeling: number;
   };
+  finalGrade: number;
   flavorText: string;
 }
 
