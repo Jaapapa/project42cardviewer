@@ -1,5 +1,9 @@
 import { useRef, useState } from 'react';
 import { Card } from '../types/Card';
+import { StatCell } from './StatCell';
+import { NameCell } from './NameCell';
+import { GroupCell } from './GroupCell';
+import { FinalGradeCell } from './FinalGradeCell';
 import '../styles/CardList.css';
 
 interface CardListProps {
@@ -219,183 +223,77 @@ export const CardList: React.FC<CardListProps> = ({
                   className="card-row"
                   onClick={() => onSelectCard(card)}
                 >
-                  <td
-                    className="card-name-cell"
+                  <NameCell
+                    cardId={card.id}
+                    name={card.name}
+                    isEditing={editingNameId === card.id}
+                    editingValue={editingNameValue}
+                    isHovered={hoveredStatCell === `name-${card.id}`}
                     onMouseEnter={() => {
                       if (editingNameId !== card.id) {
                         setHoveredStatCell(`name-${card.id}`);
                       }
                     }}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => {
-                      if (editingNameId === card.id) {
-                        e.stopPropagation();
-                      }
-                    }}
-                  >
-                    {editingNameId === card.id ? (
-                      <div className="name-edit-container">
-                        <input
-                          type="text"
-                          value={editingNameValue}
-                          onChange={(e) => setEditingNameValue(e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                              handleNameEditSave(card.id);
-                            } else if (e.key === 'Escape') {
-                              handleNameEditCancel();
-                            }
-                          }}
-                          onBlur={() => handleNameEditSave(card.id)}
-                          autoFocus
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <span>{card.name}</span>
-                        {hoveredStatCell === `name-${card.id}` && onUpdateCard && (
-                          <button
-                            className="name-edit-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleNameEditStart(card.id, card.name);
-                            }}
-                            title="Edit name"
-                          >
-                            ✏️
-                          </button>
-                        )}
-                      </>
-                    )}
-                  </td>
-                  <td
-                    className="card-group-cell"
+                    onEditStart={handleNameEditStart}
+                    onEditChange={setEditingNameValue}
+                    onEditSave={handleNameEditSave}
+                    onEditCancel={handleNameEditCancel}
+                    canUpdate={!!onUpdateCard}
+                  />
+                  <GroupCell
+                    cardId={card.id}
+                    group={card.group}
+                    isEditing={editingGroupId === card.id}
+                    editingValue={editingGroupValue}
+                    isHovered={hoveredStatCell === `group-${card.id}`}
                     onMouseEnter={() => {
                       if (editingGroupId !== card.id) {
                         setHoveredStatCell(`group-${card.id}`);
                       }
                     }}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => {
-                      if (editingGroupId === card.id) {
-                        e.stopPropagation();
-                      }
-                    }}
-                  >
-                    {editingGroupId === card.id ? (
-                      <div className="group-edit-container">
-                        <input
-                          type="text"
-                          value={editingGroupValue}
-                          onChange={(e) => setEditingGroupValue(e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                              handleGroupEditSave(card.id);
-                            } else if (e.key === 'Escape') {
-                              handleGroupEditCancel();
-                            }
-                          }}
-                          onBlur={() => handleGroupEditSave(card.id)}
-                          autoFocus
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <span>{card.group}</span>
-                        {hoveredStatCell === `group-${card.id}` && onUpdateCard && (
-                          <button
-                            className="group-edit-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleGroupEditStart(card.id, card.group);
-                            }}
-                            title="Edit group"
-                          >
-                            ✏️
-                          </button>
-                        )}
-                      </>
-                    )}
-                  </td>
+                    onEditStart={handleGroupEditStart}
+                    onEditChange={setEditingGroupValue}
+                    onEditSave={handleGroupEditSave}
+                    onEditCancel={handleGroupEditCancel}
+                    canUpdate={!!onUpdateCard}
+                  />
                   {statKeys.map((key) => {
                     const cellId = `${card.id}-${key}`;
                     const isHovered = hoveredStatCell === cellId;
                     return (
-                      <td
+                      <StatCell
                         key={key}
-                        className="card-stat-cell"
+                        cardId={card.id}
+                        statKey={key}
+                        statValue={card.stats[key]}
+                        isHovered={isHovered}
                         onMouseEnter={() => setHoveredStatCell(cellId)}
                         onMouseLeave={() => setHoveredStatCell(null)}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <div className="stat-value-container">
-                          <span>{card.stats[key]}</span>
-                          {isHovered && onUpdateCard && (
-                            <div className="stat-controls">
-                              <button
-                                className="stat-btn stat-decrement"
-                                onClick={() => handleStatChange(card.id, key, -1)}
-                                title="Decrease"
-                              >
-                                −
-                              </button>
-                              <button
-                                className="stat-btn stat-increment"
-                                onClick={() => handleStatChange(card.id, key, 1)}
-                                title="Increase"
-                              >
-                                +
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </td>
+                        onStatChange={handleStatChange}
+                        canUpdate={!!onUpdateCard}
+                      />
                     );
                   })}
-                  <td
-                    className="card-final-grade-cell"
+                  <FinalGradeCell
+                    cardId={card.id}
+                    finalGrade={card.finalGrade}
+                    isHovered={hoveredStatCell === `finalGrade-${card.id}`}
                     onMouseEnter={() => setHoveredStatCell(`finalGrade-${card.id}`)}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onClick={(e) => {
-                      if (hoveredStatCell === `finalGrade-${card.id}`) {
-                        e.stopPropagation();
-                      }
+                    onDecrement={(cardId) => {
+                      onUpdateCard?.(cardId, {
+                        finalGrade: Math.max(1, card.finalGrade - 1),
+                      });
                     }}
-                  >
-                    <div className="stat-value-container">
-                      <span>{card.finalGrade}</span>
-                      {hoveredStatCell === `finalGrade-${card.id}` && onUpdateCard && (
-                        <div className="stat-controls">
-                          <button
-                            className="stat-btn stat-decrement"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onUpdateCard(card.id, {
-                                finalGrade: Math.max(1, card.finalGrade - 1),
-                              });
-                            }}
-                            title="Decrease"
-                          >
-                            −
-                          </button>
-                          <button
-                            className="stat-btn stat-increment"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onUpdateCard(card.id, {
-                                finalGrade: Math.min(10, card.finalGrade + 1),
-                              });
-                            }}
-                            title="Increase"
-                          >
-                            +
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </td>
+                    onIncrement={(cardId) => {
+                      onUpdateCard?.(cardId, {
+                        finalGrade: Math.min(10, card.finalGrade + 1),
+                      });
+                    }}
+                    canUpdate={!!onUpdateCard}
+                  />
                 </tr>
               ))}
             </tbody>
