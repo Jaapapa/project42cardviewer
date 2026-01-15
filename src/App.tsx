@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, ViewMode } from './types/Card';
 import { useCardStorage } from './hooks/useCardStorage';
 import { CardList } from './components/CardList';
@@ -28,9 +28,23 @@ function App() {
     saveAllCards(importedCards);
   };
 
+  const handleUpdateCard = (id: string, updatedCard: Partial<Card>) => {
+    updateCard(id, updatedCard);
+  };
+
   const handleAddCard = (card: Card) => {
     addCard(card);
   };
+
+  // Sync selectedCard with updated card data from the cards array
+  useEffect(() => {
+    if (selectedCard) {
+      const updatedCard = cards.find((c) => c.id === selectedCard.id);
+      if (updatedCard) {
+        setSelectedCard(updatedCard);
+      }
+    }
+  }, [cards]);
 
   return (
     <div className="app">
@@ -42,7 +56,7 @@ function App() {
               onSelectCard={handleSelectCard}
               onPrintView={handlePrintView}
               onImport={handleImport}
-              onUpdateCard={updateCard}
+              onUpdateCard={handleUpdateCard}
               onAddCard={handleAddCard}
             />
           </div>
