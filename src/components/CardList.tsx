@@ -4,6 +4,7 @@ import { StatCell } from './StatCell';
 import { NameCell } from './NameCell';
 import { GroupCell } from './GroupCell';
 import { FinalGradeCell } from './FinalGradeCell';
+import { FlavorTextCell } from './FlavorTextCell';
 import '../styles/CardList.css';
 
 interface CardListProps {
@@ -192,6 +193,7 @@ export const CardList: React.FC<CardListProps> = ({
                     {label.substring(0, 3)}
                   </th>
                 ))}
+                <th title="Flavor Text">Flavor</th>
               </tr>
             </thead>
             <tbody>
@@ -256,6 +258,14 @@ export const CardList: React.FC<CardListProps> = ({
                       onUpdateCard?.(cardId, {
                         finalGrade: Math.min(10, card.finalGrade + 1),
                       });
+                    }}
+                    canUpdate={!!onUpdateCard}
+                  />
+                  <FlavorTextCell
+                    cardId={card.id}
+                    flavorText={card.flavorText}
+                    onFlavorTextChange={(cardId, newFlavorText) => {
+                      onUpdateCard?.(cardId, { flavorText: newFlavorText });
                     }}
                     canUpdate={!!onUpdateCard}
                   />

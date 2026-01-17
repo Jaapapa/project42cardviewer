@@ -347,6 +347,99 @@
   transform: scale(0.95);
 }
 
+.flavor-text-cell {
+  position: relative;
+  padding: var(--spacing-sm) !important;
+}
+
+.flavor-text-btn {
+  background-color: var(--fg-light);
+  color: var(--bg-dark);
+  border: 1px solid var(--fg-light);
+  padding: 4px 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 11px;
+  border-radius: 2px;
+  transition: all 0.1s ease;
+  width: 100%;
+}
+
+.flavor-text-btn:hover {
+  background-color: #ffff00;
+  box-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.flavor-text-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.flavor-text-editor {
+  position: absolute;
+  top: -10%;
+  left: -250px;
+  background-color: var(--card-bg);
+  border: 2px solid var(--fg-light);
+  border-radius: 2px;
+  padding: var(--spacing-md);
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 300px;
+}
+
+.flavor-text-editor textarea {
+  width: 100%;
+  min-height: 100px;
+  max-height: 200px;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--fg-light);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  border-radius: 2px;
+  resize: vertical;
+}
+
+.flavor-text-editor textarea:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--fg-light);
+}
+
+.flavor-text-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+.flavor-text-save,
+.flavor-text-cancel {
+  padding: 4px 12px;
+  border: 1px solid var(--fg-light);
+  background-color: var(--bg-dark);
+  color: var(--fg-light);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}
+
+.flavor-text-save:hover {
+  background-color: #00ff00;
+  color: var(--bg-dark);
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.flavor-text-cancel:hover {
+  background-color: #ff4444;
+  color: white;
+  box-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+}
+
 .no-cards {
   text-align: center;
   padding: var(--spacing-xl);
