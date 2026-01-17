@@ -97,14 +97,32 @@ export const CardList: React.FC<CardListProps> = ({
     const card = cards.find((c) => c.id === cardId);
     if (!card || !onUpdateCard) return;
 
-    const currentValue = card.stats[statKey];
+    const currentStat = card.stats[statKey];
+    const currentValue = currentStat.value;
     const newValue = Math.max(1, Math.min(10, currentValue + delta));
 
     if (newValue !== currentValue) {
       onUpdateCard(cardId, {
         stats: {
           ...card.stats,
-          [statKey]: newValue,
+          [statKey]: { ...currentStat, value: newValue },
+        },
+      });
+    }
+  };
+
+  const handleWeightChange = (cardId: string, statKey: keyof Card['stats'], delta: number) => {
+    const card = cards.find((c) => c.id === cardId);
+    if (!card || !onUpdateCard) return;
+
+    const currentStat = card.stats[statKey];
+    const newWeight = Math.max(1, Math.min(4, currentStat.weight + delta));
+
+    if (newWeight !== currentStat.weight) {
+      onUpdateCard(cardId, {
+        stats: {
+          ...card.stats,
+          [statKey]: { ...currentStat, weight: newWeight },
         },
       });
     }
@@ -118,14 +136,14 @@ export const CardList: React.FC<CardListProps> = ({
       name: 'New Card',
       group: 'A',
       stats: {
-        analyseren: 7,
-        ontwerpen: 7,
-        integratie: 7,
-        samenwerken: 7,
-        realiseren: 7,
-        testen: 7,
-        verantwoording: 7,
-        zelfontwikkeling: 7,
+        analyseren: { value: 7, weight: 1 },
+        ontwerpen: { value: 7, weight: 1 },
+        integratie: { value: 7, weight: 1 },
+        samenwerken: { value: 7, weight: 1 },
+        realiseren: { value: 7, weight: 1 },
+        testen: { value: 7, weight: 1 },
+        verantwoording: { value: 7, weight: 1 },
+        zelfontwikkeling: { value: 7, weight: 1 },
       },
       finalGrade: 7,
       flavorText: 'Add your card description here.',
@@ -218,6 +236,7 @@ export const CardList: React.FC<CardListProps> = ({
                         onMouseEnter={() => setHoveredStatCell(cellId)}
                         onMouseLeave={() => setHoveredStatCell(null)}
                         onStatChange={handleStatChange}
+                        onWeightChange={onUpdateCard ? handleWeightChange : undefined}
                         canUpdate={!!onUpdateCard}
                       />
                     );

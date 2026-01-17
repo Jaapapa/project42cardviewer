@@ -1,13 +1,14 @@
-import { Card } from '../types/Card';
+import { Card, Stat } from '../types/Card';
 
 interface StatCellProps {
   cardId: string;
   statKey: keyof Card['stats'];
-  statValue: number;
+  statValue: Stat;
   isHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   onStatChange: (cardId: string, statKey: keyof Card['stats'], delta: number) => void;
+  onWeightChange?: (cardId: string, statKey: keyof Card['stats'], delta: number) => void;
   canUpdate: boolean;
 }
 
@@ -19,6 +20,7 @@ export const StatCell: React.FC<StatCellProps> = ({
   onMouseEnter,
   onMouseLeave,
   onStatChange,
+  onWeightChange,
   canUpdate,
 }) => {
   return (
@@ -29,22 +31,40 @@ export const StatCell: React.FC<StatCellProps> = ({
       onClick={(e) => e.stopPropagation()}
     >
       <div className="stat-value-container">
-        <span>{statValue}</span>
+        <span>{statValue.value}</span>
         {isHovered && canUpdate && (
           <div className="stat-controls">
             <button
               className="stat-btn stat-decrement"
               onClick={() => onStatChange(cardId, statKey, -1)}
-              title="Decrease"
+              title="Decrease value"
             >
               −
             </button>
             <button
               className="stat-btn stat-increment"
               onClick={() => onStatChange(cardId, statKey, 1)}
-              title="Increase"
+              title="Increase value"
             >
               +
+            </button>
+          </div>
+        )}
+        {isHovered && canUpdate && onWeightChange && (
+          <div className="weight-controls">
+            <button
+              className="weight-btn weight-decrement"
+              onClick={() => onWeightChange(cardId, statKey, -1)}
+              title="Decrease weight"
+            >
+              *▼
+            </button>
+            <button
+              className="weight-btn weight-increment"
+              onClick={() => onWeightChange(cardId, statKey, 1)}
+              title="Increase weight"
+            >
+              *▲
             </button>
           </div>
         )}

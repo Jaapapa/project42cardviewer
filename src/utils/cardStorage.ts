@@ -4,11 +4,34 @@ const STORAGE_KEY = 'project42_cards';
 
 // Migrate card data to ensure all required fields exist
 const migrateCard = (card: any): Card => {
+  // Convert old format (number values) to new format (Stat objects with value and weight)
+  const migrateStats = (oldStats: any) => {
+    const newStats: any = {};
+    const statKeys = ['analyseren', 'ontwerpen', 'integratie', 'samenwerken', 'realiseren', 'testen', 'verantwoording', 'zelfontwikkeling'] as const;
+    
+    statKeys.forEach((key) => {
+      const oldValue = oldStats[key];
+      if (typeof oldValue === 'number') {
+        // Old format: just a number
+        newStats[key] = { value: oldValue, weight: 1 };
+      } else if (typeof oldValue === 'object' && oldValue.value) {
+        // New format: already has value and weight
+        newStats[key] = {
+          value: oldValue.value ?? 1,
+          weight: oldValue.weight ?? 1,
+        };
+      } else {
+        newStats[key] = { value: 5, weight: 1 };
+      }
+    });
+    return newStats;
+  };
+
   return {
     id: card.id,
     name: card.name,
     group: card.group,
-    stats: card.stats,
+    stats: migrateStats(card.stats),
     finalGrade: card.finalGrade ?? 7, // Default to 7 if missing
     flavorText: card.flavorText,
   };
