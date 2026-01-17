@@ -66,8 +66,13 @@ ${`│ FINAL GRADE: ${String(card.finalGrade).padStart(2)} `.padEnd(31)}│
 };
 
 export const PrintView: React.FC<PrintViewProps> = ({ cards, onBack }) => {
-  // Get first 9 cards for printing
-  const printCards = cards.slice(0, 9);
+  // Paginate cards: 9 cards per page
+  const CARDS_PER_PAGE = 9;
+  const pages = [];
+  
+  for (let i = 0; i < cards.length; i += CARDS_PER_PAGE) {
+    pages.push(cards.slice(i, i + CARDS_PER_PAGE));
+  }
 
   return (
     <div className="print-view-container">
@@ -83,14 +88,18 @@ export const PrintView: React.FC<PrintViewProps> = ({ cards, onBack }) => {
           <li>Set margins to <strong>None</strong> or <strong>Minimal</strong></li>
           <li>Select your paper size and printer, then print</li>
         </ol>
-        <p className="note">Each card is sized for standard trading cards (63mm × 89mm). The page displays 9 cards (3×3 grid) on A4 size.</p>
+        <p className="note">Each page displays 9 cards (3×3 grid) on A4 size. Total pages: {pages.length}</p>
       </div>
 
-      <div className="print-grid">
-        {printCards.map((card) => (
-          <PrintCard key={card.id} card={card} />
-        ))}
-      </div>
+      {pages.map((pageCards, pageIndex) => (
+        <div key={pageIndex} className="print-page">
+          <div className="print-grid">
+            {pageCards.map((card) => (
+              <PrintCard key={card.id} card={card} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

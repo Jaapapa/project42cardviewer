@@ -51,6 +51,11 @@
   font-style: italic;
 }
 
+.print-page {
+  page-break-after: always;
+  margin-bottom: var(--spacing-lg);
+}
+
 .print-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -116,8 +121,7 @@
   .print-view-container {
     padding: 0;
     background: white;
-    width: 210mm;
-    height: 297mm;
+    width: 100%;
     margin: 0;
   }
 
@@ -125,6 +129,21 @@
   .print-hint,
   .print-instructions {
     display: none;
+  }
+
+  .print-page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .print-page:last-child {
+    page-break-after: avoid;
   }
 
   .print-grid {
@@ -138,9 +157,6 @@
     page-break-inside: avoid;
     margin: 0;
     padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
   }
 
   .print-card {
