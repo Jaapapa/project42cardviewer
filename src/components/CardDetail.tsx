@@ -42,9 +42,9 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
     { label: 'Analyseren', key: 'analyseren' as const },
     { label: 'Ontwerpen', key: 'ontwerpen' as const },
     { label: 'Integratie', key: 'integratie' as const },
-    { label: 'Samenwerken', key: 'samenwerken' as const },
     { label: 'Realiseren', key: 'realiseren' as const },
     { label: 'Testen', key: 'testen' as const },
+    { label: 'Samenwerken', key: 'samenwerken' as const },
     { label: 'Verantwoording', key: 'verantwoording' as const },
     { label: 'Zelfontwikkeling', key: 'zelfontwikkeling' as const },
   ];
