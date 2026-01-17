@@ -25,10 +25,6 @@ export const CardList: React.FC<CardListProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [hoveredStatCell, setHoveredStatCell] = useState<string | null>(null);
-  const [editingNameId, setEditingNameId] = useState<string | null>(null);
-  const [editingNameValue, setEditingNameValue] = useState<string>('');
-  const [editingGroupId, setEditingGroupId] = useState<string | null>(null);
-  const [editingGroupValue, setEditingGroupValue] = useState<string>('');
 
   const statLabels = [
     'Analyseren',
@@ -138,42 +134,6 @@ export const CardList: React.FC<CardListProps> = ({
     onAddCard(newCard);
   };
 
-  const handleNameEditStart = (cardId: string, currentName: string) => {
-    setEditingNameId(cardId);
-    setEditingNameValue(currentName);
-  };
-
-  const handleNameEditSave = (cardId: string) => {
-    if (editingNameValue.trim() && onUpdateCard) {
-      onUpdateCard(cardId, { name: editingNameValue });
-    }
-    setEditingNameId(null);
-    setEditingNameValue('');
-  };
-
-  const handleNameEditCancel = () => {
-    setEditingNameId(null);
-    setEditingNameValue('');
-  };
-
-  const handleGroupEditStart = (cardId: string, currentGroup: string) => {
-    setEditingGroupId(cardId);
-    setEditingGroupValue(currentGroup);
-  };
-
-  const handleGroupEditSave = (cardId: string) => {
-    if (editingGroupValue.trim() && onUpdateCard) {
-      onUpdateCard(cardId, { group: editingGroupValue });
-    }
-    setEditingGroupId(null);
-    setEditingGroupValue('');
-  };
-
-  const handleGroupEditCancel = () => {
-    setEditingGroupId(null);
-    setEditingGroupValue('');
-  };
-
   return (
     <div className="card-list-container">
       <div className="card-list-header">
@@ -226,37 +186,23 @@ export const CardList: React.FC<CardListProps> = ({
                   <NameCell
                     cardId={card.id}
                     name={card.name}
-                    isEditing={editingNameId === card.id}
-                    editingValue={editingNameValue}
                     isHovered={hoveredStatCell === `name-${card.id}`}
-                    onMouseEnter={() => {
-                      if (editingNameId !== card.id) {
-                        setHoveredStatCell(`name-${card.id}`);
-                      }
-                    }}
+                    onMouseEnter={() => setHoveredStatCell(`name-${card.id}`)}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onEditStart={handleNameEditStart}
-                    onEditChange={setEditingNameValue}
-                    onEditSave={handleNameEditSave}
-                    onEditCancel={handleNameEditCancel}
+                    onNameChange={(cardId, newName) => {
+                      onUpdateCard?.(cardId, { name: newName });
+                    }}
                     canUpdate={!!onUpdateCard}
                   />
                   <GroupCell
                     cardId={card.id}
                     group={card.group}
-                    isEditing={editingGroupId === card.id}
-                    editingValue={editingGroupValue}
                     isHovered={hoveredStatCell === `group-${card.id}`}
-                    onMouseEnter={() => {
-                      if (editingGroupId !== card.id) {
-                        setHoveredStatCell(`group-${card.id}`);
-                      }
-                    }}
+                    onMouseEnter={() => setHoveredStatCell(`group-${card.id}`)}
                     onMouseLeave={() => setHoveredStatCell(null)}
-                    onEditStart={handleGroupEditStart}
-                    onEditChange={setEditingGroupValue}
-                    onEditSave={handleGroupEditSave}
-                    onEditCancel={handleGroupEditCancel}
+                    onGroupChange={(cardId, newGroup) => {
+                      onUpdateCard?.(cardId, { group: newGroup });
+                    }}
                     canUpdate={!!onUpdateCard}
                   />
                   {statKeys.map((key) => {

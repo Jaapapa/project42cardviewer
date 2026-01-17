@@ -1,32 +1,26 @@
+import { useState } from 'react';
+
 interface NameCellProps {
   cardId: string;
   name: string;
-  isEditing: boolean;
-  editingValue: string;
   isHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  onEditStart: (cardId: string, currentName: string) => void;
-  onEditChange: (value: string) => void;
-  onEditSave: (cardId: string) => void;
-  onEditCancel: () => void;
+  onNameChange: (cardId: string, newName: string) => void;
   canUpdate: boolean;
 }
 
 export const NameCell: React.FC<NameCellProps> = ({
   cardId,
   name,
-  isEditing,
-  editingValue,
   isHovered,
   onMouseEnter,
   onMouseLeave,
-  onEditStart,
-  onEditChange,
-  onEditSave,
-  onEditCancel,
+  onNameChange,
   canUpdate,
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingValue, setEditingValue] = useState(name);
   return (
     <td
       className="card-name-cell"
@@ -43,15 +37,25 @@ export const NameCell: React.FC<NameCellProps> = ({
           <input
             type="text"
             value={editingValue}
-            onChange={(e) => onEditChange(e.target.value)}
+            onChange={(e) => setEditingValue(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                onEditSave(cardId);
+                if (editingValue.trim()) {
+                  onNameChange(cardId, editingValue);
+                }
+                setIsEditing(false);
               } else if (e.key === 'Escape') {
-                onEditCancel();
+                setIsEditing(false);
+                setEditingValue(name);
               }
             }}
-            onBlur={() => onEditSave(cardId)}
+            onBlur={() => {
+              if (editingValue.trim()) {
+                onNameChange(cardId, editingValue);
+              }
+              setIsEditing(false);
+              setEditingValue(name);
+            }}
             autoFocus
             onClick={(e) => e.stopPropagation()}
           />
@@ -64,7 +68,8 @@ export const NameCell: React.FC<NameCellProps> = ({
               className="name-edit-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                onEditStart(cardId, name);
+                setIsEditing(true);
+                setEditingValue(name);
               }}
               title="Edit name"
             >

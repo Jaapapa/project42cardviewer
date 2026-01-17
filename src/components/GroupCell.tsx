@@ -1,32 +1,26 @@
+import { useState } from 'react';
+
 interface GroupCellProps {
   cardId: string;
   group: string;
-  isEditing: boolean;
-  editingValue: string;
   isHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  onEditStart: (cardId: string, currentGroup: string) => void;
-  onEditChange: (value: string) => void;
-  onEditSave: (cardId: string) => void;
-  onEditCancel: () => void;
+  onGroupChange: (cardId: string, newGroup: string) => void;
   canUpdate: boolean;
 }
 
 export const GroupCell: React.FC<GroupCellProps> = ({
   cardId,
   group,
-  isEditing,
-  editingValue,
   isHovered,
   onMouseEnter,
   onMouseLeave,
-  onEditStart,
-  onEditChange,
-  onEditSave,
-  onEditCancel,
+  onGroupChange,
   canUpdate,
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingValue, setEditingValue] = useState(group);
   return (
     <td
       className="card-group-cell"
@@ -43,15 +37,25 @@ export const GroupCell: React.FC<GroupCellProps> = ({
           <input
             type="text"
             value={editingValue}
-            onChange={(e) => onEditChange(e.target.value)}
+            onChange={(e) => setEditingValue(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                onEditSave(cardId);
+                if (editingValue.trim()) {
+                  onGroupChange(cardId, editingValue);
+                }
+                setIsEditing(false);
               } else if (e.key === 'Escape') {
-                onEditCancel();
+                setIsEditing(false);
+                setEditingValue(group);
               }
             }}
-            onBlur={() => onEditSave(cardId)}
+            onBlur={() => {
+              if (editingValue.trim()) {
+                onGroupChange(cardId, editingValue);
+              }
+              setIsEditing(false);
+              setEditingValue(group);
+            }}
             autoFocus
             onClick={(e) => e.stopPropagation()}
           />
@@ -64,7 +68,8 @@ export const GroupCell: React.FC<GroupCellProps> = ({
               className="group-edit-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                onEditStart(cardId, group);
+                setIsEditing(true);
+                setEditingValue(group);
               }}
               title="Edit group"
             >
