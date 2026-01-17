@@ -32,9 +32,9 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
     { label: 'Analyseren', key: 'analyseren' as const },
     { label: 'Ontwerpen', key: 'ontwerpen' as const },
     { label: 'Integratie', key: 'integratie' as const },
-    { label: 'Samenwerken', key: 'samenwerken' as const },
     { label: 'Realiseren', key: 'realiseren' as const },
     { label: 'Testen', key: 'testen' as const },
+    { label: 'Samenwerken', key: 'samenwerken' as const },
     { label: 'Verantwoording', key: 'verantwoording' as const },
     { label: 'Zelfontwikkeling', key: 'zelfontwikkeling' as const },
   ];
@@ -54,7 +54,7 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
 ${statsList.map(({ label, key }) => {
     const stat = card.stats[key];
     const weightStars = '*'.repeat(Math.max(0, stat.weight - 1));
-    return `│ ${label.substring(0, 9).padEnd(9)}  ${StatBar(stat.value)}  ${String(stat.value).padStart(2)}/10 ${weightStars.padEnd(4)}│`;
+    return `│ ${label.substring(0, 15).padEnd(15)} ${StatBar(stat.value)} ${String(stat.value).padStart(2)} ${weightStars.padEnd(3)}│`;
   }).join('\n')}
 ├──────────────────────────────────┤
 ${paddedFlavorLines.map((line) => `│ ${line} │`).join('\n')}

@@ -74,7 +74,7 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
             const weightStars = '*'.repeat(Math.max(0, stat.weight - 1));
             return (
               <div key={key} className="stat-row">
-                │ {label.substring(0, 10).padEnd(10)}  <StatBar value={stat.value} />  {String(stat.value).padStart(2)}/10 {weightStars.padEnd(4)} │
+                │ {label.substring(0, 13).padEnd(13)} <StatBar value={stat.value}/> {String(stat.value).padStart(2)}/10 {weightStars.padEnd(3)} │
               </div>
             );
           })}
