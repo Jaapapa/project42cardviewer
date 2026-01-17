@@ -5,6 +5,7 @@ import { NameCell } from './NameCell';
 import { GroupCell } from './GroupCell';
 import { FinalGradeCell } from './FinalGradeCell';
 import { FlavorTextCell } from './FlavorTextCell';
+import sampleCards from '../data/sample-cards.json';
 import '../styles/CardList.css';
 
 interface CardListProps {
@@ -94,6 +95,12 @@ export const CardList: React.FC<CardListProps> = ({
     fileInputRef.current?.click();
   };
 
+  const handleReset = () => {
+    if (window.confirm('Are you sure you want to reset to the default example data? This will replace all current cards.')) {
+      onImport?.(sampleCards as Card[]);
+    }
+  };
+
   const handleStatChange = (cardId: string, statKey: keyof Card['stats'], delta: number) => {
     const card = cards.find((c) => c.id === cardId);
     if (!card || !onUpdateCard) return;
@@ -163,6 +170,9 @@ export const CardList: React.FC<CardListProps> = ({
           </button>
           <button className="action-btn" onClick={handleImportClick}>
             Import JSON
+          </button>
+          <button className="action-btn" onClick={handleReset}>
+            Reset to Default
           </button>
           <input
             ref={fileInputRef}
