@@ -46,17 +46,21 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
   };
 
   const flavorLines = wrapText(card.flavorText, 28);
-  const paddedFlavorLines = flavorLines.slice(0, 3).map((line) => line.padEnd(28));
+  const paddedFlavorLines = flavorLines.slice(0, 3).map((line) => line.padEnd(32));
 
-  const cardContent = `┌──────────────────────────────┐
-│ ${card.name.substring(0, 20).padEnd(20)} │ ${card.group.substring(0, 5).padEnd(5)} │
-├──────────────────────────────┤
-${statsList.map(({ label, key }) => `│ ${label.substring(0, 9).padEnd(9)}  ${StatBar(card.stats[key].value)}  ${String(card.stats[key].value).padStart(2)}/10 │`).join('\n')}
-├──────────────────────────────┤
+  const cardContent = `┌──────────────────────────────────┐
+│ ${card.name.substring(0, 20).padEnd(24)} │ ${card.group.substring(0, 5).padEnd(5)} │
+├──────────────────────────────────┤
+${statsList.map(({ label, key }) => {
+    const stat = card.stats[key];
+    const weightStars = '*'.repeat(Math.max(0, stat.weight - 1));
+    return `│ ${label.substring(0, 9).padEnd(9)}  ${StatBar(stat.value)}  ${String(stat.value).padStart(2)}/10 ${weightStars.padEnd(4)}│`;
+  }).join('\n')}
+├──────────────────────────────────┤
 ${paddedFlavorLines.map((line) => `│ ${line} │`).join('\n')}
-├──────────────────────────────┤
-${`│ FINAL GRADE: ${String(card.finalGrade).padStart(2)} `.padEnd(31)}│
-└──────────────────────────────┘`;
+├──────────────────────────────────┤
+${`│ FINAL GRADE: ${String(card.finalGrade).padStart(2)} `.padEnd(35)}│
+└──────────────────────────────────┘`;
 
   return (
     <div className="print-card">
