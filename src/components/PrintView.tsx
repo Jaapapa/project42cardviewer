@@ -46,7 +46,9 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
   };
 
   const flavorLines = wrapText(card.flavorText, 28);
-  const paddedFlavorLines = flavorLines.slice(0, 5).map((line) => line.padEnd(32));
+  const paddedFlavorLines = Array(5)
+    .fill('')
+    .map((_, i) => (flavorLines[i] || '').padEnd(32));
 
   const cardContent = `┌──────────────────────────────────┐
 │ ${card.name.substring(0, 24).padEnd(24)} │ ${card.group.substring(0, 5).padEnd(5)} │

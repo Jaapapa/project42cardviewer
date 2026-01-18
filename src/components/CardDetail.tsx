@@ -50,7 +50,9 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
   ];
 
   const flavorLines = wrapText(card.flavorText, 32);
-  const paddedFlavorLines = flavorLines.slice(0, 5).map((line) => line.padEnd(34));
+  const paddedFlavorLines = Array(5)
+    .fill('')
+    .map((_, i) => (flavorLines[i] || '').padEnd(34));
 
   return (
     <div className="card-detail-container">
