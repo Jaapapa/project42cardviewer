@@ -31,8 +31,9 @@ const migrateCard = (card: any): Card => {
     id: card.id,
     name: card.name,
     group: card.group,
+    role: card.role ?? 'Developer',
     stats: migrateStats(card.stats),
-    finalGrade: card.finalGrade ?? 7, // Default to 7 if missing
+    finalGrade: card.finalGrade ?? 7,
     flavorText: card.flavorText,
   };
 };

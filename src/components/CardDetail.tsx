@@ -70,6 +70,12 @@ export const CardDetail: React.FC<CardDetailProps> = ({ card, onBack }) => {
           <div className="card-border-mid">
             ├────────────────────────────────────┤
           </div>
+          <div className="card-role">
+            │ Role: {card.role.substring(0, 28).padEnd(28)} │
+          </div>
+          <div className="card-border-mid">
+            ├────────────────────────────────────┤
+          </div>
 
           {statsList.map(({ label, key }) => {
             const stat = card.stats[key];

@@ -3,6 +3,7 @@
     "id": "1",
     "name": "John Dent",
     "group": "A",
+    "role": "Backend Developer",
     "stats": {
       "analyseren": { "value": 8, "weight": 2 },
       "ontwerpen": { "value": 9, "weight": 1 },
@@ -20,6 +21,7 @@
     "id": "2",
     "name": "Mike Prefect",
     "group": "B",
+    "role": "Full Stack Developer",
     "stats": {
       "analyseren": { "value": 7, "weight": 1 },
       "ontwerpen": { "value": 6, "weight": 2 },
@@ -37,6 +39,7 @@
     "id": "3",
     "name": "James Beeblebrox",
     "group": "A",
+    "role": "QA Engineer",
     "stats": {
       "analyseren": { "value": 9, "weight": 4 },
       "ontwerpen": { "value": 7, "weight": 2 },
@@ -54,6 +57,7 @@
     "id": "4",
     "name": "Emma Trillian",
     "group": "B",
+    "role": "Frontend Developer",
     "stats": {
       "analyseren": { "value": 8, "weight": 3 },
       "ontwerpen": { "value": 8, "weight": 3 },
@@ -71,6 +75,7 @@
     "id": "5",
     "name": "David Marvin",
     "group": "A",
+    "role": "DevOps Engineer",
     "stats": {
       "analyseren": { "value": 6, "weight": 1 },
       "ontwerpen": { "value": 7, "weight": 2 },
@@ -88,6 +93,7 @@
     "id": "6",
     "name": "Robert Slartibartfast",
     "group": "B",
+    "role": "UI/UX Designer",
     "stats": {
       "analyseren": { "value": 8, "weight": 2 },
       "ontwerpen": { "value": 7, "weight": 4 },
@@ -105,6 +111,7 @@
     "id": "7",
     "name": "Thomas Thought",
     "group": "A",
+    "role": "Data Scientist",
     "stats": {
       "analyseren": { "value": 10, "weight": 4 },
       "ontwerpen": { "value": 9, "weight": 3 },
@@ -122,6 +129,7 @@
     "id": "8",
     "name": "Christopher Vogon",
     "group": "B",
+    "role": "Team Lead",
     "stats": {
       "analyseren": { "value": 7, "weight": 2 },
       "ontwerpen": { "value": 8, "weight": 2 },
@@ -139,6 +147,7 @@
     "id": "9",
     "name": "Andrew Fish",
     "group": "A",
+    "role": "API Developer",
     "stats": {
       "analyseren": { "value": 7, "weight": 2 },
       "ontwerpen": { "value": 6, "weight": 1 },

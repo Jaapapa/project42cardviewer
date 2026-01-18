@@ -506,3 +506,51 @@
   }
 }
 
+/* Role Cell Styles */
+.card-role-cell {
+  min-width: 120px;
+  color: var(--text-secondary);
+  position: relative;
+  padding: var(--spacing-md);
+}
+
+.role-edit-btn {
+  position: absolute;
+  right: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--fg-light);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  transition: transform 0.2s ease;
+}
+
+.role-edit-btn:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.role-edit-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.role-edit-container input {
+  background-color: var(--card-bg);
+  color: var(--fg-light);
+  border: 2px solid var(--fg-light);
+  padding: 4px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-small);
+  border-radius: 2px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.role-edit-container input:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--fg-light);
+}

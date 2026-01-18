@@ -7,6 +7,7 @@ export interface Card {
   id: string;
   name: string;
   group: string;
+  role: string;
   stats: {
     analyseren: Stat;
     ontwerpen: Stat;

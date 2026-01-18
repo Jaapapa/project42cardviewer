@@ -53,6 +53,8 @@ const PrintCard: React.FC<PrintCardProps> = ({ card }) => {
   const cardContent = `┌──────────────────────────────────┐
 │ ${card.name.substring(0, 24).padEnd(24)} │ ${card.group.substring(0, 5).padEnd(5)} │
 ├──────────────────────────────────┤
+│ Role: ${card.role.substring(0, 26).padEnd(26)} │
+├──────────────────────────────────┤
 ${statsList.map(({ label, key }) => {
     const stat = card.stats[key];
     const weightStars = '*'.repeat(Math.max(0, stat.weight - 1));

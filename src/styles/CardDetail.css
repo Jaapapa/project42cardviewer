@@ -53,6 +53,11 @@
   color: var(--text-primary);
 }
 
+.card-role {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
 .card-image-space {
   min-height: 1.2em;
 }

@@ -5,6 +5,7 @@ import { NameCell } from './NameCell';
 import { GroupCell } from './GroupCell';
 import { FinalGradeCell } from './FinalGradeCell';
 import { FlavorTextCell } from './FlavorTextCell';
+import { RoleCell } from './RoleCell';
 import sampleCards from '../data/sample-cards.json';
 import '../styles/CardList.css';
 
@@ -143,6 +144,7 @@ export const CardList: React.FC<CardListProps> = ({
       id: `card-${Date.now()}`,
       name: 'New Card',
       group: 'A',
+      role: 'Developer',
       stats: {
         analyseren: { value: 7, weight: 1 },
         ontwerpen: { value: 7, weight: 1 },
@@ -198,6 +200,7 @@ export const CardList: React.FC<CardListProps> = ({
               <tr>
                 <th>Name</th>
                 <th>Group</th>
+                <th>Role</th>
                 {statLabels.map((label) => (
                   <th key={label} title={label}>
                     {label.substring(0, 3)}
@@ -232,6 +235,17 @@ export const CardList: React.FC<CardListProps> = ({
                     onMouseLeave={() => setHoveredStatCell(null)}
                     onGroupChange={(cardId, newGroup) => {
                       onUpdateCard?.(cardId, { group: newGroup });
+                    }}
+                    canUpdate={!!onUpdateCard}
+                  />
+                  <RoleCell
+                    cardId={card.id}
+                    role={card.role}
+                    isHovered={hoveredStatCell === `role-${card.id}`}
+                    onMouseEnter={() => setHoveredStatCell(`role-${card.id}`)}
+                    onMouseLeave={() => setHoveredStatCell(null)}
+                    onRoleChange={(cardId, newRole) => {
+                      onUpdateCard?.(cardId, { role: newRole });
                     }}
                     canUpdate={!!onUpdateCard}
                   />
