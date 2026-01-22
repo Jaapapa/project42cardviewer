@@ -63,7 +63,7 @@ ${statsList.map(({ label, key }) => {
 ├──────────────────────────────────┤
 ${paddedFlavorLines.map((line) => `│ ${line} │`).join('\n')}
 ├──────────────────────────────────┤
-${`│ FINAL GRADE: ${String(card.finalGrade).padStart(2)} `.padEnd(35)}│
+${`│ PROJECT CIJFER: ${String(card.finalGrade).padStart(2)} `.padEnd(35)}│
 └──────────────────────────────────┘`;
 
   return (
