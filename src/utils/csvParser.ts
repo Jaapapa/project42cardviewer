@@ -144,8 +144,8 @@ function rowToCardFromSample(values: string[], rowNum: number): Card {
   // Generate ID from name
   const id = name.toLowerCase().replace(/\s+/g, '-') + '-' + rowNum;
 
-  // Use first word of name as group (or default to role)
-  const group = name.split(' ')[0] || role;
+  // Always set group to "KlasB"
+  const group = 'KlasB';
 
   return {
     id,
