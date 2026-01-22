@@ -6,8 +6,11 @@ import { GroupCell } from './GroupCell';
 import { FinalGradeCell } from './FinalGradeCell';
 import { FlavorTextCell } from './FlavorTextCell';
 import { RoleCell } from './RoleCell';
+import { CSVImport } from './CSVImport';
 import sampleCards from '../data/sample-cards.json';
+import { exportCardsToCSV } from '../utils/csvParser';
 import '../styles/CardList.css';
+import '../styles/CSVImport.css';
 
 interface CardListProps {
   cards: Card[];
@@ -28,6 +31,7 @@ export const CardList: React.FC<CardListProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [hoveredStatCell, setHoveredStatCell] = useState<string | null>(null);
+  const [showCSVImport, setShowCSVImport] = useState(false);
 
   const statLabels = [
     'Analyseren',
@@ -59,6 +63,19 @@ export const CardList: React.FC<CardListProps> = ({
     const link = document.createElement('a');
     link.href = url;
     link.download = `project42-cards-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleExportCSV = () => {
+    const csv = exportCardsToCSV(cards);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `project42-cards-${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -170,8 +187,14 @@ export const CardList: React.FC<CardListProps> = ({
           <button className="action-btn" onClick={handleExport}>
             Export JSON
           </button>
+          <button className="action-btn" onClick={handleExportCSV}>
+            Export CSV
+          </button>
           <button className="action-btn" onClick={handleImportClick}>
             Import JSON
+          </button>
+          <button className="action-btn" onClick={() => setShowCSVImport(true)}>
+            Import CSV
           </button>
           <button className="action-btn" onClick={handleReset}>
             Reset to Default
@@ -188,6 +211,17 @@ export const CardList: React.FC<CardListProps> = ({
           </button>
         </div>
       </div>
+
+      {showCSVImport && (
+        <CSVImport
+          onImport={(importedCards) => {
+            onImport?.(importedCards);
+            setShowCSVImport(false);
+            alert(`Successfully imported ${importedCards.length} cards!`);
+          }}
+          onCancel={() => setShowCSVImport(false)}
+        />
+      )}
 
       {cards.length === 0 && (
         <div className="no-cards">No cards yet. Add some cards to get started!</div>
